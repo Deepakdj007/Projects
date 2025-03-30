@@ -1,0 +1,57 @@
+
+# Node.js / Angular / React / NestJS
+**/node_modules/
+**/dist/
+**/build/
+**/tmp/
+**/temp/
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/package-lock.json
+**/yarn.lock
+**/.eslintcache
+**/.parcel-cache/
+**/.next/
+**/.turbo/
+**/.angular/
+**/.angular/cache/
+**/.vite/
+
+# .env and config files
+**/.env
+**/.env.*.local
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# .NET
+**/bin/
+**/obj/
+**/.vs/
+**/*.user
+**/*.suo
+**/*.cache
+**/*.dbmdl
+**/TestResults/
+**/*.log
+**/project.lock.json
+**/project.fragment.lock.json
+**/artifacts/
+
+# GraphQL Codegen
+**/generated/
+**/*.generated.ts
+
+# Logs
+**/logs/
+**/*.log
+
+# Mac system files
+**/.DS_Store
+
+# IDE and Editor folders
+**/.idea/
+**/.vscode/
+**/.history/
