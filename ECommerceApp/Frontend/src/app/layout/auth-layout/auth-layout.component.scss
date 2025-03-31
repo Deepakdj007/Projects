@@ -1,0 +1,100 @@
+.auth-bg {
+  background: #ffefba; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffffff,
+    #ffefba
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #ffefba
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  height: 100dvh;
+  width: 100dvw;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .auth-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ad-block {
+    background: rgb(255 255 255 / 50%);
+    box-shadow: 0 8px 32px 0 rgb(135 119 31 / 4%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 2rem;
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+
+        &.active {
+          opacity: 1;
+          z-index: 1;
+        }
+
+        &.inactive {
+          opacity: 0;
+          z-index: 0;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        .caption {
+          position: absolute;
+          bottom: 0;
+          width: 94%;
+          padding: 1.5rem;
+          background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.87),
+            rgba(255, 255, 255, 0)
+          );
+          color: white;
+          border-bottom-left-radius: 12px;
+          border-bottom-right-radius: 12px;
+          height: 30%;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+          padding-bottom: 5rem;
+
+          h2 {
+            margin: 0;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #eed893;
+            line-height: 4rem;
+          }
+
+          p {
+            margin: 0.25rem 0 0;
+            font-size: 1.5rem;
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+}

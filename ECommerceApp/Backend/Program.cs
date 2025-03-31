@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Backend.Identity;
 using Microsoft.AspNetCore.Identity;
+using Backend.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<MongoDbService>();
+builder.Services.AddSingleton<JwtTokenGenerator>();
 
 builder.Services.AddIdentityMongoDbProvider<ApplicationUser, ApplicationRole>(
     identityOptions =>
@@ -28,6 +30,15 @@ builder.Services.AddIdentityMongoDbProvider<ApplicationUser, ApplicationRole>(
         mongoIdentityOptions.ConnectionString = builder.Configuration["ConnectionStrings:DbConnection"];
     }
 );
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowCredentials()
+            .AllowAnyHeader());
+});
 
 
 
@@ -43,6 +54,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("AllowFrontend");
 
 app.MapControllers();
 

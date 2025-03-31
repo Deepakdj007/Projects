@@ -17,7 +17,6 @@ namespace Backend.DTO
             ErrorMessage = "Password must contain at least 1 uppercase, 1 lowercase, 1 digit, and 1 special character.")]
         public string Password { get; set; }
 
-        public List<AddressDto> AddressList { get; set; }
     }
 
     public class AddressDto

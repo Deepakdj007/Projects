@@ -52,3 +52,13 @@ D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.Extensions.
 D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\MongoDbGenericRepository.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\PROJECTS\Web Apps\ECommerceApp\Backend\obj\Debug\net8.0\Backend.sourcelink.json

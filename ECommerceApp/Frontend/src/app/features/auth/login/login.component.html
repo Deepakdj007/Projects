@@ -1,0 +1,56 @@
+<div class="auth-container">
+  <h2>Good to see you again</h2>
+  <p>Your wardrobe is waiting</p>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <!-- Email -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error
+        *ngIf="
+          loginForm.get('email')?.touched &&
+          loginForm.get('email')?.hasError('required')
+        "
+      >
+        *Email is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          loginForm.get('email')?.touched &&
+          loginForm.get('email')?.hasError('email')
+        "
+      >
+        *Please enter a valid email
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field appearance="outline" class="full-width password-field">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="
+          loginForm.get('password')?.touched &&
+          loginForm.get('password')?.hasError('required')
+        "
+      >
+        *Password is required
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" class="submit-btn" type="submit">
+      Login
+    </button>
+  </form>
+  <div class="revert-prompt">
+    Don't have an account? <a routerLink="/auth/register">Create now</a>
+  </div>
+</div>

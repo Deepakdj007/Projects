@@ -195,6 +195,37 @@
         }
       }
     },
+    "/api/Users/login": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Users/{id}": {
       "get": {
         "tags": [
@@ -258,39 +289,6 @@
         },
         "additionalProperties": false
       },
-      "AddressDto": {
-        "required": [
-          "city",
-          "country",
-          "pincode",
-          "state",
-          "street"
-        ],
-        "type": "object",
-        "properties": {
-          "street": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "city": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "state": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "pincode": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "country": {
-            "minLength": 1,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
       "Cart": {
         "type": "object",
         "properties": {
@@ -347,12 +345,19 @@
             "minLength": 8,
             "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).+$",
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginUserDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
           },
-          "addressList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AddressDto"
-            },
+          "password": {
+            "type": "string",
             "nullable": true
           }
         },

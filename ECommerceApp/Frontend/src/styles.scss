@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
+
+
+body{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  background-color: #fff;
+  color: #1E1E1E; // or your brand-dark color
+  line-height: 1.6;
+}
+
+// Elegant serif for headings
+h1, h2, h3, .brand-font {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --primary-color-dark: #F5BC00;
+  --primary-color:  #FFD447;
+  --primary-color-fade:  #FFDE70;
+  --primary-color-light:  #FFEFBA;
+  --primary-color-dim:  #CC9C00;
+}
+
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --primary-color: #0d6efd;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
