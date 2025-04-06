@@ -1,27 +1,16 @@
-@use '@angular/material' as mat;
 @use 'sass:map';
+@import '~@angular/material/theming';
+
 
 // Your brand colors
 $brand-primary: #FFD447;
 $brand-accent: #1e1e1e;
 $brand-warn: #e53935;
 
-// Create your color palettes
-$custom-primary: mat.define-palette(mat.$yellow-palette, 300);
-$custom-accent: mat.define-palette(mat.$gray-palette, 900);
-$custom-warn: mat.define-palette(mat.$red-palette);
-
 // Define your theme
-$custom-theme: mat.define-light-theme((
-  color: (
-    primary: $custom-primary,
-    accent: $custom-accent,
-    warn: $custom-warn
-  ),
-  typography: mat.define-typography-config(),
-  density: 0
-));
+$custom-theme: mat-light-theme($brand-primary, $brand-accent, $brand-warn);
+
 
 // Apply the theme
-@include mat.core();
-@include mat.all-component-themes($custom-theme);
+@include angular-material-theme($custom-theme);
+

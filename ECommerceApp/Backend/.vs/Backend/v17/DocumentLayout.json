@@ -50,8 +50,7 @@
               "RelativeToolTip": "DTO\\CreateUserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T16:53:32.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T16:53:32.959Z"
             },
             {
               "$type": "Document",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-31T15:20:34.996Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T15:20:34.996Z"
             },
             {
               "$type": "Document",
@@ -76,8 +74,7 @@
               "RelativeToolTip": "DTO\\UserResponseDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T13:59:33.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T13:59:33.901Z"
             },
             {
               "$type": "Document",
@@ -89,8 +86,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAwwCYAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T13:55:42.833Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T13:55:42.833Z"
             },
             {
               "$type": "Document",
@@ -100,7 +96,7 @@
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "D:\\PROJECTS\\Web Apps\\ECommerceApp\\Backend\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwDMAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-31T13:49:18.523Z",
               "EditorCaption": ""
@@ -115,8 +111,7 @@
               "RelativeToolTip": "Utility\\JwtTokenGenerator.cs",
               "ViewState": "AgIAABYAAAAAAAAAAAAwwCAAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T12:53:48.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T12:53:48.108Z"
             }
           ]
         }
