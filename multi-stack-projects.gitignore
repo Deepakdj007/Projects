@@ -17,6 +17,7 @@
 **/.angular/
 **/.angular/cache/
 **/.vite/
+.vs/
 
 # .env and config files
 **/.env
