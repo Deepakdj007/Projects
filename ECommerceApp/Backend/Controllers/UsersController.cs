@@ -1,8 +1,11 @@
-using Backend.DTO;
+﻿using Backend.DTO;
 using Backend.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Backend.Utilities;
+using Backend.Utility;
+using System.Text;
+using OtpNet;
 
 namespace Backend.Controllers
 {
@@ -13,16 +16,19 @@ namespace Backend.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly JwtTokenGenerator _jwtTokenGenerator;
+        private readonly OtpService _otpService;
 
         public UsersController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            JwtTokenGenerator jwtTokenGenerator
+            JwtTokenGenerator jwtTokenGenerator,
+             OtpService otpService
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _jwtTokenGenerator = jwtTokenGenerator;
+            _otpService = otpService;
         }
 
         // POST: api/users/register
@@ -35,18 +41,36 @@ namespace Backend.Controllers
                 Email = dto.Email,
                 FullName = dto.FullName,
                 AddressList = [],
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
+                Is2FAEnabled = dto.Is2FAEnabled // 
             };
+
+            if (dto.Is2FAEnabled)
+            {
+                var secret = KeyGeneration.GenerateRandomKey(20); // 160-bit key
+                var base32Secret = Base32Encoding.ToString(secret);
+                user.TwoFactorSecret = base32Secret;
+            }
 
             var result = await _userManager.CreateAsync(user, dto.Password);
 
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
-            // Assign default role
+
             await _userManager.AddToRoleAsync(user, "Customer");
 
-            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+     
+            var responseUser = new
+            {
+                user.Id,
+                user.Email,
+                user.FullName,
+                user.Is2FAEnabled
+            };
+
+            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, responseUser);
         }
+
 
         // POST: api/users/login
         [HttpPost("login")]
@@ -59,6 +83,13 @@ namespace Backend.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
             if (!result.Succeeded)
                 return Unauthorized("Invalid credentials");
+
+            if (user.Is2FAEnabled)
+            {
+                var otp = _otpService.GenerateOtp(user);
+                _otpService.SendOtpToUser(user, otp); // Send OTP to email
+                return Ok(new { message = "OTP sent", requires2FA = true });
+            }
 
             var roles = await _userManager.GetRolesAsync(user);
             var token = _jwtTokenGenerator.GenerateToken(user, roles);
@@ -76,6 +107,32 @@ namespace Backend.Controllers
                 user = userDto
             });
         }
+
+        // POST: api/users/verify-otp
+        [HttpPost("verify-otp")]
+        public async Task<IActionResult> VerifyOtp([FromBody] OtpDto dto)
+        {
+            var user = await _userManager.FindByEmailAsync(dto.Email);
+            if (user == null) return Unauthorized("Invalid user");
+
+            if (string.IsNullOrEmpty(user.TwoFactorSecret))
+                return BadRequest("2FA not configured for user");
+
+            var secretKey = Base32Encoding.ToBytes(user.TwoFactorSecret); // ✅ CORRECT
+            var totp = new Totp(secretKey, step: 300); // 5-minute TOTP window
+
+            var isValid = totp.VerifyTotp(dto.Otp, out long timeStepMatched, new VerificationWindow(1, 1));
+
+            if (!isValid) return Unauthorized("Invalid OTP");
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var token = _jwtTokenGenerator.GenerateToken(user, roles.ToList());
+
+            return Ok(new { token });
+        }
+
+
+
 
 
         // GET: api/users/{id}
@@ -97,4 +154,6 @@ namespace Backend.Controllers
             return Ok(users);
         }
     }
+
+
 }

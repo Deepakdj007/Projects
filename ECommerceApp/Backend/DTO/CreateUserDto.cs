@@ -16,7 +16,7 @@ namespace Backend.DTO
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).+$",
             ErrorMessage = "Password must contain at least 1 uppercase, 1 lowercase, 1 digit, and 1 special character.")]
         public string Password { get; set; }
-
+        public bool Is2FAEnabled { get; set; } = false;
     }
 
     public class AddressDto

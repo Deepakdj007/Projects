@@ -8,6 +8,8 @@ namespace Backend.Identity
         public string FullName { get; set; }
         public List<Address> AddressList { get; set; } = new();
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public bool Is2FAEnabled { get; set; } = false;
+        public string TwoFactorSecret { get; set; } = string.Empty;
     }
 
     public class Address

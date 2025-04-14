@@ -6,6 +6,7 @@ using MongoDB.Driver;
 using Backend.Identity;
 using Microsoft.AspNetCore.Identity;
 using Backend.Utilities;
+using Backend.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<MongoDbService>();
 builder.Services.AddSingleton<JwtTokenGenerator>();
+builder.Services.AddSingleton<OtpService>();
 
 builder.Services.AddIdentityMongoDbProvider<ApplicationUser, ApplicationRole>(
     identityOptions =>
