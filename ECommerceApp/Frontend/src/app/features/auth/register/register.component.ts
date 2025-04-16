@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { CreateUserDto } from '../../../core/models/create-user.dto';
+import { MatCheckbox } from '@angular/material/checkbox';
 @Component({
   selector: 'app-register',
   imports: [
@@ -18,6 +19,7 @@ import { CreateUserDto } from '../../../core/models/create-user.dto';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatCheckbox,
     RouterLink
   ],
   templateUrl: './register.component.html',
@@ -32,7 +34,8 @@ export class RegisterComponent {
         fullName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ['', Validators.required]
+        confirmPassword: ['', Validators.required],
+        is2FAEnabled: [false],
       },
       { validator: this.passwordsMatchValidator }
     );
@@ -50,7 +53,8 @@ export class RegisterComponent {
       let request:CreateUserDto = {
         FullName: this.signupForm.get('fullName')?.value,
         Email: this.signupForm.get('email')?.value,
-        Password: this.signupForm.get('password')?.value
+        Password: this.signupForm.get('password')?.value,
+        is2FAEnabled:this.signupForm.get('is2FAEnabled')?.value,
       }
       console.log('Form Submitted:', request);
       this.authService.registerUser(request).subscribe({

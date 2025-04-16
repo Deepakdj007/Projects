@@ -50,7 +50,30 @@
       Login
     </button>
   </form>
+  <!-- OTP Verification Form -->
+  <form *ngIf="isOtpRequired" [formGroup]="otpForm" (ngSubmit)="onOtpSubmit()">
+    <div class="otp-container">
+      <input
+        matInput
+        *ngFor="let control of otpControls; let i = index"
+        [formControlName]="i"
+        maxlength="1"
+        (input)="onOtpInput($event, i)"
+        (paste)="onOtpPaste($event)"
+        [attr.aria-label]="'OTP Box ' + (i + 1)"
+      />
+    </div>
+    <button mat-flat-button color="primary" class="submit-btn" type="submit">
+      Verify OTP
+    </button>
+  </form>
   <div class="revert-prompt">
     Don't have an account? <a routerLink="/auth/register">Create now</a>
   </div>
+  @if(showLoader){
+  <mat-progress-bar
+    mode="indeterminate"
+    style="margin-top: 10px"
+  ></mat-progress-bar>
+  }
 </div>

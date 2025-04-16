@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Backend.Utilities;
 using Backend.Utility;
-using System.Text;
 using OtpNet;
 
 namespace Backend.Controllers
@@ -124,11 +123,18 @@ namespace Backend.Controllers
             var isValid = totp.VerifyTotp(dto.Otp, out long timeStepMatched, new VerificationWindow(1, 1));
 
             if (!isValid) return Unauthorized("Invalid OTP");
-
+     
             var roles = await _userManager.GetRolesAsync(user);
+            var userDto = new UserResponseDto
+            {
+                Id = user.Id.ToString(),
+                FullName = user.FullName,
+                Email = user.Email,
+                Roles = roles.ToList(),
+            };
             var token = _jwtTokenGenerator.GenerateToken(user, roles.ToList());
 
-            return Ok(new { token });
+            return Ok(new { token, user = userDto });
         }
 
 

@@ -47,4 +47,9 @@ export class AuthService {
     const url = `${environment.apiUrl}/users/login`;
     return this.http.post(url, user);
   }
+  // OTP Verification method
+  verifyOtp(email: string, otp: string) {
+    return this.http.post(`${environment.apiUrl}/users/verify-otp`, { email, otp });
+  }
+
 }

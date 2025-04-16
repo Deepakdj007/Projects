@@ -10,4 +10,5 @@ export interface CreateUserDto {
   FullName: string;
   Email: string;
   Password: string;
+  is2FAEnabled: boolean;
 }

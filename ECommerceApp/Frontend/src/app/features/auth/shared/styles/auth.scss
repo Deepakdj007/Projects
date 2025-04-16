@@ -3,7 +3,15 @@
   padding: 0 10rem;
   text-align: center;
   border-radius: 20px;
-
+  mat-checkbox.two-factor-auth-checkbox {
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex
+;
+    margin-bottom: 5px;
+    bottom: 10px;
+}
   h2 {
     font-size: 2.5rem;
     margin: 0 0.25rem;

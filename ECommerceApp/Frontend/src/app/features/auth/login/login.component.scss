@@ -1,1 +1,23 @@
 @use '../shared/styles/auth.scss' as auth;
+.otp-container {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px;
+}
+.otp-container input {
+  height: 30px;
+  width: 30px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  display: flex
+;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
+  line-height: normal;
+  text-align: center;
+}

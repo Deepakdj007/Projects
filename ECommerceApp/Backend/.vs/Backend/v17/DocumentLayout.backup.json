@@ -11,16 +11,16 @@
       "RelativeMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|solutionrelative:utility\\otpservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|d:\\projects\\web apps\\ecommerceapp\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|d:\\projects\\web apps\\ecommerceapp\\backend\\identity\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|solutionrelative:identity\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|d:\\projects\\web apps\\ecommerceapp\\backend\\dto\\createuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|solutionrelative:dto\\createuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|d:\\projects\\web apps\\ecommerceapp\\backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4DC989B-05BF-4CF3-9FFB-E4E45B059D42}|Backend.csproj|d:\\projects\\web apps\\ecommerceapp\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,16 +50,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "CreateUserDto.cs",
               "DocumentMoniker": "D:\\PROJECTS\\Web Apps\\ECommerceApp\\Backend\\DTO\\CreateUserDto.cs",
               "RelativeDocumentMoniker": "DTO\\CreateUserDto.cs",
               "ToolTip": "D:\\PROJECTS\\Web Apps\\ECommerceApp\\Backend\\DTO\\CreateUserDto.cs",
               "RelativeToolTip": "DTO\\CreateUserDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T04:44:45.801Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T04:44:45.801Z"
             },
             {
               "$type": "Document",
@@ -83,12 +82,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAiwEoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T16:36:28.243Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T16:36:28.243Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\PROJECTS\\Web Apps\\ECommerceApp\\Backend\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -96,8 +94,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAABwAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-08T16:26:24.737Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T16:26:24.737Z"
             },
             {
               "$type": "Document",
@@ -107,10 +104,9 @@
               "RelativeDocumentMoniker": "Utility\\OtpService.cs",
               "ToolTip": "D:\\PROJECTS\\Web Apps\\ECommerceApp\\Backend\\Utility\\OtpService.cs",
               "RelativeToolTip": "Utility\\OtpService.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAiwEMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAwwBoAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T16:21:22.614Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T16:21:22.614Z"
             },
             {
               "$type": "Document",
@@ -132,14 +128,14 @@
               "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
               "ToolTip": "D:\\PROJECTS\\Web Apps\\ECommerceApp\\Backend\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAUwIQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAuwHoAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-08T16:19:58.555Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "D:\\PROJECTS\\Web Apps\\ECommerceApp\\Backend\\Identity\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Identity\\ApplicationUser.cs",
@@ -147,8 +143,7 @@
               "RelativeToolTip": "Identity\\ApplicationUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAUAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T16:19:37.299Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T16:19:37.299Z"
             }
           ]
         }
