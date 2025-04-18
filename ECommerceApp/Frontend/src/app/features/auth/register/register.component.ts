@@ -58,6 +58,9 @@ export class RegisterComponent {
       document.getElementById('google-signin-button')!,
       { theme: 'outline', size: 'large' } // Customize button style
     );
+
+    // Also set up automatic login for already authenticated users
+    google.accounts.id.prompt();
   }
   // Google Login
   googleLogin(token: string) {

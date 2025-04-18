@@ -13,8 +13,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NotificationService } from '../../../core/services/notification.service';
 import {SocialLoginModule} from '@abacritt/angularx-social-login';
 import { environment } from '../../../../environemnts/environment';
-import { SocialAuthService } from "@abacritt/angularx-social-login";
-import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
+
 @Component({
   selector: 'app-login',
   imports: [
@@ -61,22 +60,22 @@ export class LoginComponent {
   }
 
   ngOnInit() {
-    //  // Initialize Google Sign-In
-    // google.accounts.id.initialize({
-    //   client_id: environment.CLINET_ID,
-    //   callback: (response: any) => {
-    //     this.googleLogin(response.credential); // Get the Google ID token and handle login
-    //   },
-    // });
 
-    // // Render Google Sign-In Button
-    // google.accounts.id.renderButton(
-    //   document.getElementById('google-signin-button')!,
-    //   { theme: 'outline', size: 'large' } // Customize button style
-    // );
+        // Initialize Google Sign-In
+        google.accounts.id.initialize({
+          client_id: environment.CLINET_ID,  // Make sure to replace with your actual Google client ID
+          callback: (response: any) => this.googleLogin(response.credential), // Pass the credential/token
+        });
 
-    // // Also set up automatic login
-    // google.accounts.id.prompt();
+        // Render Google Sign-In Button
+        google.accounts.id.renderButton(
+          document.getElementById('google-signin-button')!,
+          { theme: 'outline', size: 'large' }
+        );
+
+        // Also set up automatic login for already authenticated users
+        google.accounts.id.prompt();
+
   }
   // Google Login
   googleLogin(token: string) {
