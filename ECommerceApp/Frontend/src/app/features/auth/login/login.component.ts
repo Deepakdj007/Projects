@@ -10,8 +10,11 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { LoginUserDto } from '../../../core/models/login-user.dto';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-
-
+import { NotificationService } from '../../../core/services/notification.service';
+import {SocialLoginModule} from '@abacritt/angularx-social-login';
+import { environment } from '../../../../environemnts/environment';
+import { SocialAuthService } from "@abacritt/angularx-social-login";
+import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
 @Component({
   selector: 'app-login',
   imports: [
@@ -22,7 +25,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatButtonModule,
     MatIconModule,
     RouterLink,
-    MatProgressBarModule
+    MatProgressBarModule,
+    SocialLoginModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -34,7 +38,14 @@ export class LoginComponent {
   otpForm: FormGroup;
   isOtpRequired:boolean = false;
   otpControls: any[] = Array(6).fill(0);
-  constructor(private fb: FormBuilder, private authService:AuthService, private router:Router) {
+
+
+  constructor(
+    private fb: FormBuilder,
+    private authService:AuthService,
+    private router:Router,
+    private notificationService:NotificationService,
+  ) {
     this.loginForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -47,6 +58,42 @@ export class LoginComponent {
         return acc;
       }, {})
     );
+  }
+
+  ngOnInit() {
+    //  // Initialize Google Sign-In
+    // google.accounts.id.initialize({
+    //   client_id: environment.CLINET_ID,
+    //   callback: (response: any) => {
+    //     this.googleLogin(response.credential); // Get the Google ID token and handle login
+    //   },
+    // });
+
+    // // Render Google Sign-In Button
+    // google.accounts.id.renderButton(
+    //   document.getElementById('google-signin-button')!,
+    //   { theme: 'outline', size: 'large' } // Customize button style
+    // );
+
+    // // Also set up automatic login
+    // google.accounts.id.prompt();
+  }
+  // Google Login
+  googleLogin(token: string) {
+    this.showLoader = true;
+      this.authService.googleLogin(token).subscribe({
+        next: (res: any) => {
+          this.authService.login(res.token, res.user.email);
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          this.showLoader = false;
+          console.error('Google login failed:', err);
+        },
+        complete:() => {
+          this.showLoader = false;
+        },
+      });
   }
 
 
@@ -65,20 +112,29 @@ export class LoginComponent {
           } else {
             // Handle regular login (store JWT token)
             this.authService.login(res.token, res.user.email)
+            // Check if the token is expired before navigating
+          if (this.authService.isTokenExpired()) {
+            this.authService.logout(); // Optionally, log out the user
+            this.router.navigate(['/auth/login']);
+          } else {
             this.router.navigate(['/']);
+            this.notificationService.showSuccess('Login success!' + ' Welcome ' + res.user.email); // Show success message
+          }
           }
 
         },
         error: (err) => {
           this.showLoader = false;
-          console.error('Registration failed:', err);
-          // Show error to user
+          this.notificationService.showError('Login failed'); // Show error message
         },
         complete: () => {
           this.showLoader = false;
         }
       });
 
+    }
+    else{
+      this.loginForm.markAllAsTouched(); // Mark all fields as touched to show validation errors
     }
   }
 
@@ -93,11 +149,12 @@ onOtpSubmit() {
     this.authService.verifyOtp(email, otpString).subscribe({
       next: (response:any) => {
         this.authService.login(response.token, response.user.email)
+        this.notificationService.showSuccess('Login success!' + ' Welcome ' + response.user.email); // Show success message
         this.router.navigate(['/']);
       },
       error: (err) => {
         this.showLoader = false;
-        console.error('OTP verification failed', err);
+        this.notificationService.showError('Login failed'); // Show error message
       },
       complete: () => {
         this.showLoader = false;

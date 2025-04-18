@@ -10,6 +10,9 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { CreateUserDto } from '../../../core/models/create-user.dto';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { environment } from '../../../../environemnts/environment';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 @Component({
   selector: 'app-register',
   imports: [
@@ -20,13 +23,15 @@ import { MatCheckbox } from '@angular/material/checkbox';
     MatButtonModule,
     MatIconModule,
     MatCheckbox,
-    RouterLink
+    RouterLink,
+    MatProgressBarModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
   signupForm!: FormGroup;
+  showLoader:boolean = false;
   hide = true;
   constructor(private fb: FormBuilder, private authService:AuthService, private router:Router) {
     this.signupForm = this.fb.group(
@@ -39,6 +44,37 @@ export class RegisterComponent {
       },
       { validator: this.passwordsMatchValidator }
     );
+  }
+  ngOnInit() {
+    // Render Google Sign-In Button
+    google.accounts.id.initialize({
+      client_id: environment.CLINET_ID,
+      callback: (response: any) => {
+        this.googleLogin(response.credential); // Get the Google ID token and handle login
+      },
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById('google-signin-button')!,
+      { theme: 'outline', size: 'large' } // Customize button style
+    );
+  }
+  // Google Login
+  googleLogin(token: string) {
+    this.showLoader = true;
+      this.authService.googleLogin(token).subscribe({
+        next: (res: any) => {
+          this.authService.login(res.token, res.user.email);
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          this.showLoader = false;
+          console.error('Google login failed:', err);
+        },
+        complete:() => {
+          this.showLoader = false;
+        },
+      });
   }
 
   passwordsMatchValidator(form: FormGroup) {
@@ -68,6 +104,9 @@ export class RegisterComponent {
         }
       });
 
+    }
+    else{
+      this.signupForm.markAllAsTouched(); // Mark all fields as touched to show validation errors
     }
   }
 }

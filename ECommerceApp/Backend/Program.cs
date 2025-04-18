@@ -20,6 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<MongoDbService>();
 builder.Services.AddSingleton<JwtTokenGenerator>();
 builder.Services.AddSingleton<OtpService>();
+builder.Services.AddSingleton<GoogleLogin>();
 
 builder.Services.AddIdentityMongoDbProvider<ApplicationUser, ApplicationRole>(
     identityOptions =>

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Backend.Utilities;
 using Backend.Utility;
 using OtpNet;
+using Google.Apis.Auth; // Google authentication library
 
 namespace Backend.Controllers
 {
@@ -16,18 +17,21 @@ namespace Backend.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly JwtTokenGenerator _jwtTokenGenerator;
         private readonly OtpService _otpService;
+        private readonly GoogleLogin _googleLogin;
 
         public UsersController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             JwtTokenGenerator jwtTokenGenerator,
-             OtpService otpService
+            OtpService otpService,
+            GoogleLogin googleLogin
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _jwtTokenGenerator = jwtTokenGenerator;
             _otpService = otpService;
+            _googleLogin = googleLogin;
         }
 
         // POST: api/users/register
@@ -70,6 +74,53 @@ namespace Backend.Controllers
             return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, responseUser);
         }
 
+        // POST: api/users/google-login
+        [HttpPost("google-login")]
+        public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginDto dto)
+        {
+            try
+            {
+                var payload = await _googleLogin.VerifyGoogleToken(dto.TokenId);
+                var user = await _userManager.FindByEmailAsync(payload.Email);
+
+                if (user == null)
+                {
+                    // If user doesn't exist, create a new one
+                    user = new ApplicationUser
+                    {
+                        UserName = payload.Email,
+                        Email = payload.Email,
+                        FullName = payload.Name,
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    var result = await _userManager.CreateAsync(user);
+                    if (!result.Succeeded)
+                        return BadRequest(result.Errors);
+
+                    // Assign a default role
+                    await _userManager.AddToRoleAsync(user, "Customer");
+                }
+
+                // Generate JWT token for the user
+                var roles = await _userManager.GetRolesAsync(user);
+                var token = _jwtTokenGenerator.GenerateToken(user, roles.ToList());
+
+                var userDto = new UserResponseDto
+                {
+                    Id = user.Id.ToString(),
+                    FullName = user.FullName,
+                    Email = user.Email,
+                    Roles = roles.ToList(),
+                };
+
+                return Ok(new { token, user = userDto });
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized("Google authentication failed: " + ex.Message);
+            }
+        }
 
         // POST: api/users/login
         [HttpPost("login")]

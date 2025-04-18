@@ -58,10 +58,37 @@
       </mat-error>
     </mat-form-field>
     <mat-checkbox class="two-factor-auth-checkbox" formControlName="is2FAEnabled">Enable two factor authentication</mat-checkbox>
-    <button mat-flat-button color="primary" class="submit-btn" type="submit">
-      Register
-    </button>
+    <div class="login-buttons">
+      <button mat-flat-button color="primary" class="submit-btn" type="submit">
+        Register
+      </button>
+      <!-- <div id="google-signin-button"  class="login-with-google-btn" >
+        Sign in with Google
+      </div> -->
+      <div id="g_id_onload"
+      data-client_id="394154041719-pect82212q6duqmb441hvvq9d005lukg.apps.googleusercontent.com"
+      data-context="signin"
+      data-ux_mode="popup"
+      data-login_uri="http://localhost:4200/auth/login"
+      data-itp_support="true">
+ </div>
+ <div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="outline"
+     data-text="signin_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
+    </div>
+
   </form>
+  @if(showLoader){
+    <mat-progress-bar
+      mode="indeterminate"
+      style="margin-top: 10px"
+    ></mat-progress-bar>
+    }
   <div class="revert-prompt">
     Already have an account? <a routerLink="/login">Log in</a>
   </div>

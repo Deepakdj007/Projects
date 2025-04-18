@@ -1,4 +1,4 @@
-@use '../shared/styles/auth.scss' as auth;
+@use "../shared/styles/auth.scss" as auth;
 .otp-container {
   display: flex;
   width: 100%;
@@ -12,8 +12,7 @@
   width: 30px;
   border: 1px solid #e1e1e1;
   border-radius: 8px;
-  display: flex
-;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
@@ -21,3 +20,4 @@
   line-height: normal;
   text-align: center;
 }
+
